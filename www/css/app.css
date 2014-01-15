@@ -3,7 +3,4 @@
 .boite2{width:1080px;height400px;background-color:#DCDCDC;border-style:solid}
 .centre{text-align:center}
 .tableau{width:100%}
-.info1{margin:10px auto 10px auto;border-style:solid;border-color:blue;width:95%}
-.info2{margin:10px auto 10px auto;border-style:solid;border-color:blue;width:95%}
-.info3{margin:10px auto 10px auto;border-style:solid;border-color:blue;width:95%}
-.info4{margin:10px auto 10px auto;border-style:solid;border-color:blue;width:95%}
+#content{margin:10px auto 10px auto;border-style:solid;border-color:blue;width:95%}
