@@ -19,32 +19,55 @@
 -->
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/app.css" />
-        <title>LFI info</title>
+                <title>LFIS</title>
+                <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+                <meta http-equiv="Content-Script-Type" content="text/javascript" />
+       <link rel="stylesheet" type="text/css" href="css/app.css" />
+                <script>
+                        // XML PARSER cf. http://www.w3schools.com/xml/tryit.asp?filename=tryxml_display_table
+                        function xmlparser()
+                        {
+                                var xmlhttp, xml_data, items, content;
+                                xmlhttp=new XMLHttpRequest();
+                                xmlhttp.open("GET", "http://www.fis.edu.hk/web/WebsiteFeeds.aspx?f=0&lang=fr-fr", true);
+                                //xmlhttp.open("GET", "xmlfile.xml", true);
+                                xmlhttp.overrideMimeType('text/xml; charset=iso-8859-1');
+                                xmlhttp.onreadystatechange=function()
+                                {
+                                        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                                        {
+                                                xml_data = xmlhttp.responseXML;
+                                                items = xml_data.getElementsByTagName("item");
+                                                
+                                                content = '';
+                                                for (i=0;i<items.length;i++)
+                                                        { 
+                                                        content = content + '<h1 class="title">' + items[i].getElementsByTagName("title")[0].textContent + '</h1><p class="description">' + items[i].getElementsByTagName("description")[0].textContent + '</p>';
+                                                        }
+                                                
+                                                document.getElementById('content').innerHTML=content;
+                                        }
+                                }
+                                xmlhttp.send();
+                        }        
+                </script>
     </head>
     <body>
-        <div class="boite1">
-			<div class="titre">
-			<table class="tableau"><tr><td><h1 class="centre"><font color="red">Actualites LFI</font> 20/11/2013</td><td><a href="" target="_blank"> EN </a></td><td><a href="" target="_blank"> FR </a></td></tr></table></h1></div>
-			<div class="info1"><h2>Cinéclub de novembre</h2>
-			<h3>18/11/2013</h3>
-			Notez dans votre agenda les prochaines séances du Cinéclub : mercredi 20 et vendredi 22 nov...</div>
-			<div class="info2"><h2>Premier salon virtuel sur l'orientation en France du 20 au 22 novembre<h2>
-			<h3>14/11/2013</h3>
-			Il s’agit d’une plateforme interactive en dimension 3D comprenant des stands, des salles de conférenc...</div>
-			<div class="info3"><h2>8ème coupe d'Asie de rugby : le LFI a gagné!</h2>
-			<h3>13/11/2013</h3>
-			La 8°coupe d'Asie de rugby à 7 des lycées français se déroulait les 8 et 9 novembre à ...</div>
-			<div class="info4"><h2>AGM du 15 octobre 2013 : résultats des élections</h2>
-			<h3>16/10/2013</h3>
-			Pour consulter la liste des parents élus aux différents conseils et au comité exécutif. M...</div>
-				<div class="boite2">
+          <div class="boite1">     
+		<div class="titre">
+		<table class="tableau"><tr><td><h1 class="centre"><font color="red">LFIS Actualités</font> 20/11/2013</td><td><a href="" target="_blank"> EN </a></td><td><a href="" target="_blank"> FR </a></td></tr></table></h1></div>
+                <div class="boite2">
 				<a href="http://pronote.fis.edu.hk/" target="_blank"> <img src="pronote.gif"></a>
 				<a href="http://www.fis.edu.hk/web/Default.aspx?r=1&lang=fr-fr" target="_blank"> <img src="FIS.png"></a>
 				</div>
-			</div>
+		<div id="content">&nbsp;</div>
+		</div>
+                
+                <script type="text/javascript">window.onload = xmlparser();</script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
     </body>
 </html>
