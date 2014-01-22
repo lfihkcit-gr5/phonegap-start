@@ -42,7 +42,7 @@
                                                 content = '';
                                                 for (i=0;i<items.length;i++)
                                                         { 
-                                                        content = content + '<h1 class="title">' + items[i].getElementsByTagName("title")[0].textContent + '</h1><p class="description">' + items[i].getElementsByTagName("description")[0].textContent + '</p>';
+                                                        content = content + '<div><h1 class="title">' + items[i].getElementsByTagName("title")[0].textContent + '</h1><p class="description">' + items[i].getElementsByTagName("description")[0].textContent + '</p></div>';
                                                         }
                                                 
                                                 document.getElementById('content').innerHTML=content;
@@ -55,8 +55,16 @@
     <body>
           <div class="boite1">     
 		<div class="titre">
-		<table class="tableau"><tr><td><h1 class="centre"><font color="red">LFIS Actualités</font><br /> 20/11/2013</td><td><a href="" target="_blank"> EN </a></td><td><a href="" target="_blank"> FR </a></td></tr></table></h1></div>
-                <div class="boite2">
+		<h1 class="centre"><font color="red">LFIS Actualités</font><br />
+<script>var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+
+var yyyy = today.getFullYear();
+if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
+document.write(today);</script></div>       
+		
+<div class="boite2">
 				<a href="http://pronote.fis.edu.hk/" target="_blank"> <img src="pronote.gif"></a>
 				<a href="http://www.fis.edu.hk/web/Default.aspx?r=1&lang=fr-fr" target="_blank"> <img src="FIS.png"></a>
 				</div>
